@@ -1,5 +1,5 @@
 # Description
-This repo contains a template for docker-compose with Django + Postgres + Celery + Redis + Vue.js
+This repo contains a template for docker-compose with Django + Postgres + Celery + Redis + Vue.js + Nginx
 # Requirements
 - docker
 - docker-compose
