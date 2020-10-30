@@ -1,0 +1,13 @@
+
+version: '2'
+
+services:
+
+  vue:
+    build:
+      context: ./frontend
+    volumes:
+      - static_volume:/usr/share/nginx/html/staticfiles
+      - media_volume:/usr/share/nginx/html/mediafiles
+    ports:
+      - 80:80
