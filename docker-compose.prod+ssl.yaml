@@ -1,0 +1,30 @@
+
+version: '2'
+
+services:
+
+  vue:
+    build:
+      context: ./frontend
+    volumes:
+      - static_volume:/usr/share/nginx/html/staticfiles
+      - media_volume:/usr/share/nginx/html/mediafiles
+    depends_on:
+      - django
+
+  caddy:
+    image: caddy:alpine
+    command:
+      caddy reverse-proxy --from ${HTTPS_DOMAIN} --to vue:80
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - vue
+
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,5 +1,5 @@
 # Description
-This repo contains a template for docker-compose with Django + Postgres + Celery + Redis + Vue.js + Nginx
+This repo contains a template for docker-compose with Django + Postgres + Celery + Redis + Vue.js + Nginx + Caddy (optional)
 # Requirements
 - docker
 - docker-compose
@@ -7,21 +7,22 @@ This repo contains a template for docker-compose with Django + Postgres + Celery
 Copy __.env.example__ to __.env__ and change it.
 > :warning: Only __/api/__ and __/admin/__ routes are proxied to django!
 
-### Production
+
 First time run cmd below to start db and wait for a while for db initialization to complete.
 ```sh
-docker-compose --env-file .env -f docker-compose.base.yaml -f docker-compose.prod.yaml up -d db
+docker-compose -f docker-compose.base.yaml up -d db
 ```
-And then
+
+### Production
 ```sh
-docker-compose --env-file .env -f docker-compose.base.yaml -f docker-compose.prod.yaml up -d
+docker-compose -f docker-compose.base.yaml -f docker-compose.prod.yaml up -d
+```
+### Production with HTTPS (with Let's Encrypt by Caddy)
+> Change HTTPS_DOMAIN environment variable inside __.env__ from localhost to your domain name
+```sh
+docker-compose -f docker-compose.base.yaml -f docker-compose.prod+ssl.yaml up -d
 ```
 ### Development (a hot-reload of Vue.js and Django apps. Celery tasks updated by manual required)
-First time run cmd below to start db and wait for a while for db initialization to complete.
 ```sh
-docker-compose --env-file .env -f docker-compose.base.yaml -f docker-compose.dev.yaml up -d db
-```
-And then
-```sh
-docker-compose --env-file .env -f docker-compose.base.yaml -f docker-compose.dev.yaml up -d
+docker-compose -f docker-compose.base.yaml -f docker-compose.dev.yaml up -d
 ```
