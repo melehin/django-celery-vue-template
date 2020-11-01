@@ -5,6 +5,7 @@ This repo contains a template for docker-compose with Django + Postgres + Celery
 - docker-compose
 # How to run
 Copy __.env.example__ to __.env__ and change it.
+> :warning: Only __/api/__ and __/admin/__ routes are proxied to django!
 
 ### Production
 ```sh

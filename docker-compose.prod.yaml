@@ -11,3 +11,5 @@ services:
       - media_volume:/usr/share/nginx/html/mediafiles
     ports:
       - 80:80
+    depends_on:
+      - django
