@@ -10,6 +10,8 @@ services:
     depends_on:
       - db
       - celery
+    volumes:
+      - ./backend/:/usr/src/app
 
   vue:
     image: node:lts-alpine
